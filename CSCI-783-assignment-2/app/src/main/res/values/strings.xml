@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="challenges_list">
+    Challenges:\n
+    1. Device Fragmentation\n
+    2. Performance Optimization\n
+    3. Battery Consumption\n
+    4. Network Issues\n
+    5. Security Concerns\n
+    6. User Interface Design\n
+    7. Platform-specific Development\n
+    8. Data Synchronization\n
+    9. App Store Approval Process\n
+    10. User Engagement and Retention
+</string>
+
+
+
+</resources>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#003300"
+    tools:context=".MainActivity">
+
+    <!-- TextView to display full name -->
+    <TextView
+        android:id="@+id/textViewFullName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Student Name: Chakri Chitihmalli"
+        android:textSize="23sp"
+        android:layout_marginTop="25dp"
+        android:layout_gravity="center_horizontal"
+        android:textStyle="bold"
+        android:textColor="#FFFF00"/>
+
+    <!-- TextView to display student ID -->
+    <TextView
+        android:id="@+id/textViewStudentID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="EMPL ID: 1467001"
+        android:textSize="23sp"
+        android:layout_marginTop="25dp"
+        android:layout_gravity="center_horizontal"
+        android:textStyle="bold"
+        android:textColor="#FFFF00"/>
+    <Button
+        android:id="@+id/startExplicitlyButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start Activity Explicitly"
+        android:layout_gravity="center_horizontal"
+        android:textSize="23sp"
+        android:layout_marginTop="25dp"
+        android:textStyle="bold"
+        android:textColor="#FFFF00"/>
+
+    <!-- Button to start the second activity implicitly -->
+    <Button
+        android:id="@+id/startImplicitlyButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start Activity Implicitly"
+        android:layout_gravity="center_horizontal"
+        android:textSize="23sp"
+        android:layout_marginTop="25dp"
+        android:textStyle="bold"
+        android:textColor="#FFFF00"/>
+</LinearLayout>
