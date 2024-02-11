@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="challenges_list_array">
+        <item>Device Fragmentation</item>
+        <item>Performance Optimization</item>
+        <item>Battery Consumption</item>
+        <item>Network Issues</item>
+        <item>Security Concerns</item>
+        <item>User Interface Design</item>
+        <item>Platform-specific Development</item>
+        <item>Data Synchronization</item>
+        <item>App Store Approval Process</item>
+        <item>User Engagement and Retention</item>
+    </string-array>
+</resources>
