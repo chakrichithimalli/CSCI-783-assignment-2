@@ -2,6 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+    <uses-permission android:name="android.permission.CAMERA"/>
+    
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -26,6 +31,15 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="com.example.assignmentapp.START_SECOND_ACTIVITY" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.example.assignment_2_App.ViewImageQuality"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.example.assignmentapp.START_VIEW_IMAGE_QUALITY" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
