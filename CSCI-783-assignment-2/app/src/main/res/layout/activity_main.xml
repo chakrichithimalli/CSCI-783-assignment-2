@@ -53,4 +53,16 @@
         android:layout_marginTop="25dp"
         android:textStyle="bold"
         android:textColor="#FFFF00"/>
+
+    <Button
+        android:id="@+id/viewImageQuality"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View Image Quality"
+        android:layout_gravity="center_horizontal"
+        android:textSize="23sp"
+        android:layout_marginTop="25dp"
+        android:textStyle="bold"
+        android:textColor="#FFFF00"/>
+
 </LinearLayout>
