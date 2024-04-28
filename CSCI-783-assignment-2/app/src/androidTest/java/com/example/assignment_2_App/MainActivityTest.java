@@ -53,7 +53,7 @@ public class MainActivityTest {
                 throw new AssertionError("Start button not found");
             }
         } else {
-            throw new AssertionError("App icon not found");
+            throw new AssertionError("App icon not found on the home screen");
         }
     }
 }
