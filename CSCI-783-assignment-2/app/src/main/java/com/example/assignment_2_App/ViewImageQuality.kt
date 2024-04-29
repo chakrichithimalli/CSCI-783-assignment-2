@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.widget.Button
 import android.widget.ImageView
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -18,6 +19,8 @@ class ViewImageQuality : AppCompatActivity() {
 
     private val REQUEST_IMAGE_CAPTURE = 1
     private lateinit var imageView: ImageView
+    val REQUEST_CODE = 100
+    private lateinit var capturedImageView: ImageView
 
     // Permission request code
     private val PERMISSION_CAMERA = 1
@@ -27,49 +30,37 @@ class ViewImageQuality : AppCompatActivity() {
         setContentView(R.layout.activity_three)
 
         imageView = findViewById(R.id.captured_image)
+        capturedImageView = findViewById(R.id.captured_image) // Initialize capturedImageView
         val cameraButton: Button = findViewById(R.id.capture_button)
         cameraButton.setOnClickListener {
             // Check if the camera permission is granted
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
-                != PackageManager.PERMISSION_GRANTED) {
-                // Request the permission
-                ActivityCompat.requestPermissions(this,
-                    arrayOf(Manifest.permission.CAMERA),
-                    PERMISSION_CAMERA)
-            } else {
+            if (checkCameraPermission()) {
                 // Permission has been granted, proceed with camera operation
                 dispatchTakePictureIntent()
+            } else {
+                requestCameraPermission()
             }
         }
     }
 
     private fun dispatchTakePictureIntent() {
-        Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
-            takePictureIntent.resolveActivity(packageManager)?.also {
-                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
-            }
-        }
+        val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        takePictureLauncher.launch(takePictureIntent)
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
-            val imageBitmap = data?.extras?.get("data") as Bitmap
-            imageView.setImageBitmap(imageBitmap)
-        }
+    private fun checkCameraPermission(): Boolean {
+        return ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        when (requestCode) {
-            PERMISSION_CAMERA -> {
-                // If request is cancelled, the result arrays are empty
-                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    // Permission was granted, dispatch the picture intent
-                    dispatchTakePictureIntent()
-                }
-            }
+    private fun requestCameraPermission() {
+        ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), REQUEST_CODE)
+    }
+
+    private val takePictureLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            val data: Intent? = result.data
+            val imageBitmap = data?.extras?.get("data") as? Bitmap
+            capturedImageView.setImageBitmap(imageBitmap)
         }
     }
 }
